@@ -1,0 +1,153 @@
+// CORE STYLES
+
+:root {
+  font-size: calc(0.6vw + 0.5vh + .5vmin); 
+}
+@media only screen and (max-width: 768px) {
+  :root {
+    font-size: calc(1.5vw + 0.7vh); } 
+}
+
+html, body {
+  height: 100%;
+}
+
+h1, .h1 {
+  font-size: 200%;
+}
+
+h2, .h2 {
+  font-size: 175%;
+}
+
+h3, .h3 {
+  font-size: 150%;
+}
+
+h4, .h4 {
+  font-size: 130%;
+}
+
+h5, .h5 {
+  font-size: 115%;
+}
+
+h6, .h6 {
+  font-size: 100%;
+}
+
+a, a:hover {
+  text-decoration: none;
+  color: none !important;
+}
+
+// LOGIN, REGISTER ETC. FORMS
+
+.form-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .form-title {
+    text-align: center;  
+  }
+  .btn-block+.btn-block {
+    margin-top: 0;
+  }
+  button {
+    margin-bottom: 0.6rem;
+    font-size: 1.3rem;
+  }
+  a.btn {
+    margin-bottom: 0.3rem;
+  }
+}
+
+.input-red::placeholder {
+  color: #CC0000;
+}
+
+.input-red:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #CC0000;
+}
+
+.input-red::-ms-input-placeholder { /* Microsoft Edge */
+  color: #CC0000;
+}
+
+
+// APPLICATION
+
+// all sections
+.content-stats {
+  padding-top: 2rem;
+  background: #444;
+  color: #eee;
+}
+
+.content-data {
+  padding-top: 2rem;
+}
+
+.flex-fill {
+  flex:1 1 auto;
+}
+
+// header
+
+nav {
+  margin: 0 -15px;
+}
+
+.username {
+  font-weight: 300;
+  &::before, &::after {
+    content: " :: ";
+  }
+}
+
+// stats
+
+//main app
+
+.error-msg {
+  text-align: center;
+  font-size: 1rem;
+  color: #CC0000;
+}
+
+.password-group {
+  position: relative;
+  .password-visibility {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.4rem;
+  }
+}
+
+.add-password, .password-row {
+  @media (max-width: 767px) { 
+    input { 
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.password-row {
+  padding: 0.6rem;
+  &:nth-child(even) {
+    background: #EEE;
+  }
+}
+
+// pagination
+
+.pagination {
+  margin-top: 0.5rem; 
+}
+
+
+// GENERAL FORMS
+
+
+

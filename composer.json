@@ -1,0 +1,15 @@
+{
+    "name": "przemek/pass-man",
+    "authors": [
+        {
+            "name": "Przemyslaw Mikolajczak",
+            "email": "legionix@mylittlepla.net"
+        }
+    ],
+    "require": {},
+        "autoload": {
+            "psr-4": {
+                "PassMan\\": "passlib/"
+            }
+        }
+}
