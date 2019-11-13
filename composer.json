@@ -11,5 +11,8 @@
             "psr-4": {
                 "PassMan\\": "passlib/"
             }
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
         }
 }

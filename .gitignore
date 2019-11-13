@@ -1,2 +1,5 @@
 doc.bat
 passconfig.php
+vendor/bin/
+vendor/phpunit/
+vendor/symfony/

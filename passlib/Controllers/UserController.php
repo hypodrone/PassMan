@@ -176,7 +176,7 @@ class UserController extends \PassMan\Core\Controller {
     protected function resetpass() {
         // result of password reset form
 
-        switch ($this->model->reguser()) {
+        switch ($this->model->resetpass()) {
             case "success":
                 \PassMan\Core\Session::setMessage("Password has been reset.<br />You may now log in.", "success");
                 break;
