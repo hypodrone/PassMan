@@ -1,6 +1,6 @@
 <?php
 
-namespace PassMan\Controllers;
+namespace Passlib\Controllers;
 
 /**
  * Home Controller Class.
@@ -10,7 +10,7 @@ namespace PassMan\Controllers;
  * or REDIRECT ( e.g. $this->redirect('user/login'); )
  *
  */
-class HomeController extends \PassMan\Core\Controller {
+class HomeController extends \Passlib\Core\Controller {
 
     /**
      * HomeController's model.
@@ -32,7 +32,7 @@ class HomeController extends \PassMan\Core\Controller {
      */
     public function __construct($action, $param = null, $flags = null) {
         parent::__construct($action, $param, $flags);
-        $this->model = new \PassMan\Models\HomeModel(); 
+        $this->model = new \Passlib\Models\HomeModel(); 
     }
 
     /**
@@ -59,13 +59,13 @@ class HomeController extends \PassMan\Core\Controller {
     protected function add() {
         // add password to database
         if ($this->model->add()=="success" ) {
-            \PassMan\Core\Session::setMessage("Password added.", "success");
+            \Passlib\Core\Session::setMessage("Password added.", "success");
         }
         else if ($this->model->add()=="passexists" ) {
-            \PassMan\Core\Session::setMessage("Password for this service already exists.", "error");
+            \Passlib\Core\Session::setMessage("Password for this service already exists.", "error");
         }
         else if ($this->model->add()=="noservice" ) {
-            \PassMan\Core\Session::setMessage("Service name is required.", "error");
+            \Passlib\Core\Session::setMessage("Service name is required.", "error");
         }
         $this->redirect('home');
     }
@@ -81,16 +81,16 @@ class HomeController extends \PassMan\Core\Controller {
      */
     protected function modify() {
         if ($this->model->modify()=="updated" ) {
-            \PassMan\Core\Session::setMessage("Password updated.", "success");
+            \Passlib\Core\Session::setMessage("Password updated.", "success");
         }
         else if ($this->model->modify()=="noservice" ) {
-            \PassMan\Core\Session::setMessage("Service name required.", "error");
+            \Passlib\Core\Session::setMessage("Service name required.", "error");
         }
         else if ($this->model->modify()=="deleted" ) {
-            \PassMan\Core\Session::setMessage("Password deleted.", "success");
+            \Passlib\Core\Session::setMessage("Password deleted.", "success");
         }
         else {
-            \PassMan\Core\Session::setMessage("General error.", "error");
+            \Passlib\Core\Session::setMessage("General error.", "error");
         }
         $this->redirect('home');
     }

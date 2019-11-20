@@ -1,6 +1,6 @@
 <?php
 
-	namespace PassMan\Core;
+	namespace Passlib\Core;
 
     /**
      * Base Model Class.

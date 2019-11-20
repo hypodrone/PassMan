@@ -1,6 +1,6 @@
 <?php
 
-namespace PassMan\Models;
+namespace Passlib\Models;
 
 /**
  * Home Model Class.
@@ -8,7 +8,7 @@ namespace PassMan\Models;
  * This is home model class extending Model.
  *
  */
-class HomeModel extends \PassMan\Core\Model {
+class HomeModel extends \Passlib\Core\Model {
 
     /**
 	 * Main application model - Home index.
@@ -28,7 +28,7 @@ class HomeModel extends \PassMan\Core\Model {
         $other = array();
 
         $rows_pp = 5; // used in pagination helper
-        $user_id = \PassMan\Core\Session::get("user_id");
+        $user_id = \Passlib\Core\Session::get("user_id");
 
         $this->query('SELECT COUNT(*) AS users_qty FROM passmanusers');
         $stats = $this->single();     // fetches single row
@@ -79,7 +79,7 @@ class HomeModel extends \PassMan\Core\Model {
     public function add() {
         // Sanitize POST
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $user_id = \PassMan\Core\Session::get("user_id");
+        $user_id = \Passlib\Core\Session::get("user_id");
         $service = $post['service'];
         $srvpsswd = $post['password'];
 

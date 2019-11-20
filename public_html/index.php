@@ -16,12 +16,12 @@ $loader = require __DIR__ . '/../vendor/autoload.php'; // loads the Composer aut
 require_once("../passconfig.php"); // loads configuration file
 
 // Initiating session
-PassMan\Core\Session::start();
+Passlib\Core\Session::start();
 
 // Setting publicly accessible routes - all others are RESTRICTED and require logging in
-PassMan\Core\Router::allowPublicAccess("user/login", "user/auth", "user/register", "user/reguser", "user/forgot", "user/resend", "user/reset", "user/resetpass");
+Passlib\Core\Router::allowPublicAccess("user/login", "user/auth", "user/register", "user/reguser", "user/forgot", "user/resend", "user/reset", "user/resetpass");
 
-$controller = PassMan\Core\Router::getController($_SERVER['REQUEST_URI']);
+$controller = Passlib\Core\Router::getController($_SERVER['REQUEST_URI']);
 
 // Router - execution of chosen controller.
 

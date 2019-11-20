@@ -1,6 +1,6 @@
 <?php
 
-	namespace PassMan\Core;
+	namespace Passlib\Core;
 
     /**
      * Base Controller Class.
@@ -40,13 +40,13 @@
         /**
          * Used to establish view in displayView function.
          *
-         * Quicker than preg_match("/\\\PassMan\\\Controller\\\(.*)Controller/", $a, $match); - tested...
+         * Quicker than preg_match("/\\\Passlib\\\Controller\\\(.*)Controller/", $a, $match); - tested...
          * 
          * @return string Controller's name
          */
         private function getName() {
             $name = static::class;
-            $name = str_replace("PassMan\\", "", $name);
+            $name = str_replace("Passlib\\", "", $name);
             $name = str_replace("Controllers\\", "", $name);
             $name = str_replace("Controller", "", $name);
             return $name;

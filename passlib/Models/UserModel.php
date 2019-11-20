@@ -1,6 +1,6 @@
 <?php
 
-namespace PassMan\Models;
+namespace Passlib\Models;
 
 /**
  * User Model Class.
@@ -8,7 +8,7 @@ namespace PassMan\Models;
  * This is user model class extending Model.
  *
  */
-class UserModel extends \PassMan\Core\Model {
+class UserModel extends \Passlib\Core\Model {
 
 	/**
 	 * User authorization.
@@ -28,7 +28,7 @@ class UserModel extends \PassMan\Core\Model {
 		}
 		$user = $this->checkPass($email,$password);
 		if ( $user ) {
-			\Passman\Core\Session::logIn($user);
+			\Passlib\Core\Session::logIn($user);
 
 			$this->query('UPDATE passmanusers SET last_login = :last_login WHERE id = :id');
 			$this->bind(':last_login', date('Y-m-d H:i:s') );
@@ -101,7 +101,7 @@ class UserModel extends \PassMan\Core\Model {
 				$this->bind(':resettoken', $token);
 				$this->bind(':email', $post['email']);
 				$this->execute();
-				$this->emailToken($post['email'], $token, \PassMan\Core\Session::get("user_firstname"));
+				$this->emailToken($post['email'], $token, \Passlib\Core\Session::get("user_firstname"));
 			return true;
 		}
 		return false;
@@ -123,7 +123,7 @@ class UserModel extends \PassMan\Core\Model {
 		$this->bind(':resettoken', $resetString);
 		$row = $this->single();
 		if ( $row ) {
-			\PassMan\Core\Session::set("user_reset",$row["email"]);
+			\Passlib\Core\Session::set("user_reset",$row["email"]);
 			return true;
 		}
 		return false;
@@ -142,10 +142,10 @@ class UserModel extends \PassMan\Core\Model {
 	public function resetpass() {
 		// Sanitize POST
 		$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-		if ( $post['resetpass'] && \PassMan\Core\Session::get("user_reset") ) { 
+		if ( $post['resetpass'] && \Passlib\Core\Session::get("user_reset") ) { 
 			$password = $post['respassword'];
 			$passconf = $post['respasswordconf'];
-			$email = \PassMan\Core\Session::get("user_reset");
+			$email = \Passlib\Core\Session::get("user_reset");
 
 			if ( $password!=$passconf )
 			{
@@ -161,7 +161,7 @@ class UserModel extends \PassMan\Core\Model {
 
 			$this->execute();
 
-			\PassMan\Core\Session::unset("user_reset"); // unset the variable enforcing user to use the reset link again
+			\Passlib\Core\Session::unset("user_reset"); // unset the variable enforcing user to use the reset link again
 			return "success"; // password reset - ALL OK
 		}
 		return "error";
@@ -181,10 +181,10 @@ class UserModel extends \PassMan\Core\Model {
 		$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 		 if ( $post['delete'] ) {			
 				$this->query('DELETE FROM passmandata WHERE user_id = :user_id)');
-				$this->bind(':user_id', \PassMan\Core\Session::get("user_id"));
+				$this->bind(':user_id', \Passlib\Core\Session::get("user_id"));
 				$this->execute();
 				$this->query('DELETE FROM passmanusers WHERE id = :id');
-				$this->bind(':id', \PassMan\Core\Session::get("user_id"));
+				$this->bind(':id', \Passlib\Core\Session::get("user_id"));
 				$this->execute();
 				return true;
 		}		
@@ -259,11 +259,11 @@ class UserModel extends \PassMan\Core\Model {
 	 */
 	private function emailToken($email, $token, $firstname) {
 		$to = $email;
-        $subject = "PassMan - password reset link";
+        $subject = "Passlib - password reset link";
         $message = "
         <html>
           <head>
-           <title>PassMan password reset</title>
+           <title>Passlib password reset</title>
           </head>
           <body>
             <p>Hi $firstname!</p>
@@ -287,15 +287,15 @@ class UserModel extends \PassMan\Core\Model {
 	 */
 	private function notifyAdminEmail($email, $user) {
 		$to = $email;
-		$subject = "PassMan - new user registration";
+		$subject = "Passlib - new user registration";
 		$message = "
         <html>
           <head>
-           <title>PassMan user rgistration</title>
+           <title>Passlib user rgistration</title>
           </head>
           <body>
             <p>Hi!</p>
-            <p>New user - $user - has just registered with PassMan.</p>
+            <p>New user - $user - has just registered with Passlib.</p>
           </body>
         </html>
         ";

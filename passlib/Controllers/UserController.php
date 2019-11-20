@@ -1,6 +1,6 @@
 <?php
 
-namespace PassMan\Controllers;
+namespace Passlib\Controllers;
 
 /**
  * User Controller Class.
@@ -10,7 +10,7 @@ namespace PassMan\Controllers;
  * or REDIRECT ( e.g. $this->redirect('user/login'); )
  *
  */
-class UserController extends \PassMan\Core\Controller {
+class UserController extends \Passlib\Core\Controller {
 
     /**
      * UserController's model.
@@ -32,7 +32,7 @@ class UserController extends \PassMan\Core\Controller {
      */
     public function __construct($action, $param = null, $flags = null) {
         parent::__construct($action, $param, $flags);
-        $this->model = new \PassMan\Models\UserModel(); 
+        $this->model = new \Passlib\Models\UserModel(); 
     }
 
     // no index method as there is no such view required!
@@ -63,7 +63,7 @@ class UserController extends \PassMan\Core\Controller {
             $this->redirect('home');
         }
         else {
-            \PassMan\Core\Session::setMessage("Incorrect login.<br />Please try again.", "error");
+            \Passlib\Core\Session::setMessage("Incorrect login.<br />Please try again.", "error");
             $this->redirect('user/login');   
         }
     }
@@ -92,23 +92,23 @@ class UserController extends \PassMan\Core\Controller {
 
         switch ($this->model->reguser()) {
             case "success":
-                \PassMan\Core\Session::setMessage("User created.<br />You may now log in.", "success");
+                \Passlib\Core\Session::setMessage("User created.<br />You may now log in.", "success");
                 $this->redirect('user/login');
                 break;
             case "userexists":
-                \PassMan\Core\Session::setMessage("User already exists.<br />Please try again.", "error");
+                \Passlib\Core\Session::setMessage("User already exists.<br />Please try again.", "error");
                 $this->redirect('user/register');
                 break;
             case "passmatch":
-                \PassMan\Core\Session::setMessage("Passwords don't match.<br />Please try again.", "error");
+                \Passlib\Core\Session::setMessage("Passwords don't match.<br />Please try again.", "error");
                 $this->redirect('user/register');
                 break;
             case "dberror":
-                \PassMan\Core\Session::setMessage("Error connecting to database.<br />Please try again.", "error");
+                \Passlib\Core\Session::setMessage("Error connecting to database.<br />Please try again.", "error");
                 $this->redirect('user/register');
                 break;
             default:
-                \PassMan\Core\Session::setMessage("Incorrect details.<br />Please try again.", "error");
+                \Passlib\Core\Session::setMessage("Incorrect details.<br />Please try again.", "error");
                 $this->redirect('user/register');
         }
     }
@@ -136,11 +136,11 @@ class UserController extends \PassMan\Core\Controller {
     protected function resend() {
 
         if ( $this->model->resend() ) {
-            \PassMan\Core\Session::setMessage("Password reset link emailed.<br />Please check your inbox.", "success");
+            \Passlib\Core\Session::setMessage("Password reset link emailed.<br />Please check your inbox.", "success");
             $this->redirect('user/login');
         }
         else {
-            \PassMan\Core\Session::setMessage("Incorrect email.<br />Please try again.", "error");
+            \Passlib\Core\Session::setMessage("Incorrect email.<br />Please try again.", "error");
             $this->redirect('user/forgot');
         }
     }
@@ -159,7 +159,7 @@ class UserController extends \PassMan\Core\Controller {
             $this->displayView('reset');
         }
         else {
-            \PassMan\Core\Session::setMessage("Error resetting password.<br />Please try again.", "error");
+            \Passlib\Core\Session::setMessage("Error resetting password.<br />Please try again.", "error");
             $this->redirect('user/login');
         }
     }
@@ -178,13 +178,13 @@ class UserController extends \PassMan\Core\Controller {
 
         switch ($this->model->resetpass()) {
             case "success":
-                \PassMan\Core\Session::setMessage("Password has been reset.<br />You may now log in.", "success");
+                \Passlib\Core\Session::setMessage("Password has been reset.<br />You may now log in.", "success");
                 break;
             case "passmatch":
-                \PassMan\Core\Session::setMessage("Passwords don't match.<br />Please try again.", "error");
+                \Passlib\Core\Session::setMessage("Passwords don't match.<br />Please try again.", "error");
                 break;
             default:
-                \PassMan\Core\Session::setMessage("Error connecting to database.<br />Please try again.", "error");
+                \Passlib\Core\Session::setMessage("Error connecting to database.<br />Please try again.", "error");
         }
         $this->redirect('user/login');
     }
@@ -203,12 +203,12 @@ class UserController extends \PassMan\Core\Controller {
 
         if ( $this->model->delete() ) {
             // show password reset form
-            \PassMan\Core\Session::logOut();
-            \PassMan\Core\Session::setMessage("Your account has been permanently deleted.<br />Good bye!", "success");
+            \Passlib\Core\Session::logOut();
+            \Passlib\Core\Session::setMessage("Your account has been permanently deleted.<br />Good bye!", "success");
             $this->redirect('user/login');
         }
         else {
-            \PassMan\Core\Session::setMessage("Error deleting user.<br />Please try again.", "error");
+            \Passlib\Core\Session::setMessage("Error deleting user.<br />Please try again.", "error");
             $this->redirect('home/index');
         }
     }
@@ -222,8 +222,8 @@ class UserController extends \PassMan\Core\Controller {
      */
     protected function logout() {
         // clear session data
-        \PassMan\Core\Session::logOut();
-        \PassMan\Core\Session::setMessage("You have been successfully logged out.", "success");
+        \Passlib\Core\Session::logOut();
+        \Passlib\Core\Session::setMessage("You have been successfully logged out.", "success");
         // redirect to:
         $this->redirect("user/login");
     }

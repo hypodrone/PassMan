@@ -6,7 +6,7 @@
         <form id="login-form" class="login-form" action="/user/resetpass" method="post">
             <h2 class="error-msg mb-3 font-weight-normal">
             <?php
-                \PassMan\Core\Session::showMessage();
+                \Passlib\Core\Session::showMessage();
             ?>
             </h2>
             <fieldset>

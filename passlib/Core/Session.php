@@ -1,6 +1,6 @@
 <?php
 
-namespace PassMan\Core;
+namespace Passlib\Core;
 
 /**
  * Session and messages handler - STATIC
@@ -110,6 +110,9 @@ final class Session {
         self::set("user_email", $user['email']);
         self::set("user_firstname", $user['firstname']);
         self::set("user_role", $user['role']);
+        if ( substr($user['last_login'], 0, 4) == '1970' ) {
+            self::set("first_login",true);
+        }
         self::set("user_last_login_date", date('Y-m-d', strtotime($user['last_login'])));
         self::set("user_last_login_time", date('H:i:s', strtotime($user['last_login'])));
 

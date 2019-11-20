@@ -1,6 +1,6 @@
 <?php
 
-	namespace PassMan\Helpers;
+	namespace Passlib\Helpers;
 
     /**
      * Pagination class.

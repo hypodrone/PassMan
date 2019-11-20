@@ -18,7 +18,7 @@ class ComposerStaticInitc874765b871b171e753696b0c4f479e8
         ),
         'P' => 
         array (
-            'PassMan\\' => 8,
+            'Passlib\\' => 8,
         ),
     );
 
@@ -31,7 +31,7 @@ class ComposerStaticInitc874765b871b171e753696b0c4f479e8
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'PassMan\\' => 
+        'Passlib\\' => 
         array (
             0 => __DIR__ . '/../..' . '/passlib',
         ),

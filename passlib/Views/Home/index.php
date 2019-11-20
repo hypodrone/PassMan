@@ -7,7 +7,7 @@
                         <h1><a href="/">PassMan</a></h1>
                         <span class="username">
                             <?php
-                                echo \PassMan\Core\Session::get("user_email");
+                                echo \Passlib\Core\Session::get("user_email");
                             ?>
                         </span>
                     </span>    
@@ -21,7 +21,7 @@
             <div class="col-sm-9 order-sm-2 content-data">
                 <div class="error-msg font-weight-normal">
                     <?php
-                        \PassMan\Core\Session::showMessage();
+                        \Passlib\Core\Session::showMessage();
                     ?>
                 </div>
                 <h3>Add new password:</h3>
@@ -84,7 +84,7 @@
                 ?>
                 <div class="pagination-wrap">
                     <?php
-                        echo \PassMan\Helpers\Pagination::showPagination($model['stats']['total'],$model['other']['current'],$model['other']['rows_pp']);
+                        echo \Passlib\Helpers\Pagination::showPagination($model['stats']['total'],$model['other']['current'],$model['other']['rows_pp']);
                     ?>
                 </div>
             </div>
@@ -92,16 +92,20 @@
                 <h3>Statistics</h3> 
                 <p>You have <?php echo $pass_qty = $model['stats']['total']; echo " password" . ($pass_qty == 1 ? "" : "s ");?> set.</p>
                 <p>There <?php $users_qty = $model['stats']['users_qty']; echo $users_qty == 1 ? " is $users_qty user " : " are $users_qty users ";?> registered.</p>
+                
+                <?php if( substr(\Passlib\Core\Session::get("user_last_login_date"), 0, 4) != "1970" ) : ?>
                 <hr>
                 <p>Your last login:<br>
                 <?php
-                    echo \PassMan\Core\Session::get("user_last_login_date");
+                    echo \Passlib\Core\Session::get("user_last_login_date");
                 ?>
                 <br>
                 <?php
-                    echo \PassMan\Core\Session::get("user_last_login_time");
+                    echo \Passlib\Core\Session::get("user_last_login_time");
                 ?>
                 </p>
+                <?php endif; ?>
+                
                 <hr>
                 <!-- This needs to be a form to pass post variable rather than by get and prevent deleting user by typing in url directly! -->
                 <form id="login-form" class="login-form" action="/user/delete" method="post">

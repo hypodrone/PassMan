@@ -1,6 +1,6 @@
 <?php
 
-    namespace PassMan\Core;
+    namespace Passlib\Core;
 
     /**
      * Router Class.
@@ -48,7 +48,7 @@
             // function returns an array of valid ["contr", "act", "param"] to be used
             
             //let's FINALLY try to create controller to be returned
-            $controllerClass = "\\PassMan\\Controllers\\" . ucfirst($validRequest["contr"]) . "Controller";
+            $controllerClass = "\\Passlib\\Controllers\\" . ucfirst($validRequest["contr"]) . "Controller";
             self::$controller = new $controllerClass($validRequest["act"], $validRequest["param"]);
 
             return self::$controller;
@@ -105,7 +105,7 @@
                         $param = "1";
                     }                                                                                              
 
-                    if ( !class_exists("\\PassMan\\Controllers\\" . ucfirst($contr) . "Controller") || !method_exists("\\PassMan\\Controllers\\" . ucfirst($contr) . "Controller", $act) ) {
+                    if ( !class_exists("\\Passlib\\Controllers\\" . ucfirst($contr) . "Controller") || !method_exists("\\Passlib\\Controllers\\" . ucfirst($contr) . "Controller", $act) ) {
                         $contr = "home";
                         $act = "index";
                         $param = "1";

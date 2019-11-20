@@ -9,7 +9,7 @@
     "require": {},
         "autoload": {
             "psr-4": {
-                "PassMan\\": "passlib/"
+                "Passlib\\": "passlib/"
             }
         },
         "require-dev": {
